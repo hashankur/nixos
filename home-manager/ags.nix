@@ -4,7 +4,7 @@
     inputs.ags.homeManagerModules.default
   ];
 
-  home.packages = [ inputs.astal.packages.${pkgs.system}.default ];
+  home.packages = [ inputs.ags.packages.${pkgs.system}.io ];
 
   programs.ags = {
     enable = true;
@@ -13,17 +13,15 @@
     extraPackages = with inputs.ags.packages.${pkgs.system}; [
       apps
       # auth
+      # battery
       # bluetooth
       mpris
       # network
       # notifd
-      # powerprofiles
       # tray
       wireplumber
-      # battery
       pkgs.fzf
       pkgs.dart-sass
-      inputs.astal.packages.${pkgs.system}.default
     ];
   };
 }

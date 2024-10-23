@@ -14,15 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    astal = {
-      url = "github:Aylur/astal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ags = {
       url = "github:Aylur/ags/v2";
-      inputs.astal.follows = "astal";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     spicetify-nix = {
