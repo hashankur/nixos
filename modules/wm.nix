@@ -84,6 +84,12 @@
     };
   };
 
+  services = {
+    # Power savings
+    power-profiles-daemon.enable = false;
+    auto-cpufreq.enable = true;
+  };
+
   chaotic.scx = {
     enable = true;
     scheduler = "scx_bpfland";
