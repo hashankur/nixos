@@ -43,6 +43,11 @@
       url = "github:MarceColl/zen-browser-flake?ref=pull/45/head";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    android-nixpkgs = {
+      url = "github:tadfisher/android-nixpkgs/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Output config, or config for NixOS system

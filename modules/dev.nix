@@ -57,20 +57,21 @@
 
     adb.enable = true;
 
-    # java = {
-    #   enable = false;
-    #   package = pkgs.temurin-bin;
-    # };
+    java = {
+      enable = true;
+      package = pkgs.temurin-bin;
+    };
 
     direnv.enable = false;
 
     nix-ld = {
       enable = true;
-      libraries = pkgs.steam-run.fhsenv.args.multiPkgs pkgs;
-      # libraries = with pkgs; [
-      #   # stdenv.cc.cc.lib
-      #   pkgs
-      # ];
+      libraries =
+        with pkgs;
+        [
+          xorg.libxkbfile
+        ]
+        ++ pkgs.steam-run.fhsenv.args.multiPkgs pkgs;
     };
   };
 
