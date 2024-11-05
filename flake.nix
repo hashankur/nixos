@@ -16,6 +16,7 @@
 
     ags = {
       url = "github:Aylur/ags/v2";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     spicetify-nix = {
@@ -73,13 +74,13 @@
           inherit system;
           specialArgs = inputs;
           modules = [
+            ./modules/nix.nix
             ./hosts/odyssey
             ./modules/core.nix
             ./modules/desktop.nix
             ./modules/dev.nix
             ./modules/gaming.nix
             ./modules/wm.nix
-            ./modules/nix.nix
             ./modules/ssd.nix
             ./modules/terminal.nix
             chaotic.nixosModules.default
@@ -103,10 +104,10 @@
           inherit system;
           specialArgs = inputs;
           modules = [
+            ./modules/nix.nix
             ./hosts/perseus
             ./modules/core.nix
             ./modules/desktop.nix
-            ./modules/nix.nix
 
             home-manager.nixosModules.home-manager
             {
