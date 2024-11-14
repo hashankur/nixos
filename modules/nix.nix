@@ -4,7 +4,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than-1w";
+      options = "--delete-older-than 14d";
     };
     registry.nixpkgs.flake = nixpkgs; # Reuse system nixpkgs for flakes
     settings = {

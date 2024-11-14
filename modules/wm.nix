@@ -50,8 +50,8 @@
   fonts = {
     packages = with pkgs; [
       (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-      iosevka-bin
-      inter
+      # iosevka-bin
+      # inter
       # noto-fonts-color-emoji
       # twitter-color-emoji
     ];
@@ -69,6 +69,24 @@
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Classic";
       size = 20;
+    };
+    fonts = {
+      serif = {
+        name = "Inter";
+        package = pkgs.inter;
+      };
+      sansSerif = {
+        name = "Inter";
+        package = pkgs.inter;
+      };
+      monospace = {
+        name = "Iosevka";
+        package = pkgs.iosevka-bin;
+      };
+      emoji = {
+        name = "Twitter Color Emoji";
+        package = pkgs.twitter-color-emoji;
+      };
     };
   };
 

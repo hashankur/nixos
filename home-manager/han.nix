@@ -6,7 +6,7 @@
   imports = [
     ./ags.nix
     ./spicetify.nix
-    # ./stylix.nix # see wm.nix
+    ./stylix.nix # see wm.nix for global stylix
 
     inputs.ala-lape.homeManagerModules.default
   ];
