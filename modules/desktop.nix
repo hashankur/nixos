@@ -21,7 +21,7 @@
     unrar
     libnotify
 
-    gnome-tweaks
+    # gnome-tweaks
     adw-gtk3
   ];
 

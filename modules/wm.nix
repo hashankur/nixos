@@ -7,7 +7,6 @@
     # wlsunset
     gammastep
     # wluma
-    # rofi-wayland
     playerctl
     libnotify
     # pamixer

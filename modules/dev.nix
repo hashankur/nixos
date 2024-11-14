@@ -1,36 +1,27 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    ## Editor / IDE
     vscode.fhs
     zed-editor_git
+    # androidStudioPackages.beta
+    # arduino-ide
+
+    ## Compilers / Runtimes
     nodejs
     bun
-    # python3Full
-    rustup
     # python3
-    # (python3.withPackages (ps:
-    #   with ps; [
-    #     pip
-    #     black
-    #     flake8
-    #     ipython
-    #     mypy
-    #     pylint
-    #     pytest
-    #     yapf
-    #     python-lsp-server
-    #     pillow
-    # ]))
+    rustup
+
+    ## Tools
     # contrast
     # gaphor
     # gcc
-    # flutter
     # scrcpy
-    # jdt-language-server
-    # jetbrains-toolbox
-    # androidStudioPackages.beta
-    # volta
+    nh
+    # docker-compose
 
+    ## LSP
     # nil
     nixfmt-rfc-style
     nixd
@@ -38,11 +29,7 @@
     nodePackages_latest.typescript-language-server
     nodePackages_latest."@tailwindcss/language-server"
     marksman
-    lua-language-server
-
-    arduino-ide
-
-    nh
+    # lua-language-server
   ];
 
   programs = {
@@ -81,4 +68,6 @@
   #     package = pkgs.mariadb;
   #   };
   # };
+
+  # virtualisation.docker.enable = true;
 }

@@ -4,7 +4,7 @@
     gamemode
     bottles
     mangohud
-    gamescope
+    # gamescope
     # gnome.aisleriot
     # gnome.gnome-chess
     # ryujinx

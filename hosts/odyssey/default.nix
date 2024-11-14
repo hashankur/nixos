@@ -39,11 +39,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     obsidian
-    transmission_4-gtk
     fragments
-    # thunderbird-bin
     brave
-    floorp
     zen-browser.packages."${system}".specific
 
     ## Media
@@ -64,10 +61,6 @@
     mission-center
 
     anydesk
-    # nushell
-    docker-compose
-    # steam-run
-    # rio
   ];
 
   # List services that you want to enable:
@@ -90,7 +83,6 @@
     flatpak.enable = true;
   };
 
-  virtualisation.docker.enable = true;
   # virtualisation.virtualbox.host.enable = true;
 
   # virtualisation.waydroid.enable = true;

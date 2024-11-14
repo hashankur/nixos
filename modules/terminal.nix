@@ -1,19 +1,19 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    # alacritty
     starship
     eza
     # ranger
     # kitty
     helix
     yadm
-    zellij
-    gitui
+    # zellij
+    lazygit
     # navi
-    wezterm
-    yazi
+    # yazi
     zoxide
-    warp-terminal
+    # warp-terminal
+    # nushell
+    rio
   ];
 }

@@ -44,11 +44,6 @@
       url = "github:MarceColl/zen-browser-flake?ref=pull/45/head";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    android-nixpkgs = {
-      url = "github:tadfisher/android-nixpkgs/stable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   # Output config, or config for NixOS system
@@ -131,40 +126,6 @@
             ./modules/nix.nix
           ];
         };
-      };
-
-      # Add this output, colmena will read its contents for remote deployment
-      colmena = {
-        meta = {
-          nixpkgs = pkgs;
-          nodeNixpkgs = builtins.mapAttrs (name: value: value.pkgs) conf;
-          nodeSpecialArgs = builtins.mapAttrs (name: value: value._module.specialArgs) conf;
-
-          # This parameter functions similarly to `sepcialArgs` in `nixosConfigurations.xxx`,
-          # used for passing custom arguments to all submodules.
-          specialArgs = {
-            inherit nixpkgs;
-          };
-        };
-
-        "perseus" =
-          { name, nodes, ... }:
-          {
-            # Parameters related to remote deployment
-            deployment.targetHost = "perseus.local"; # Remote host's IP address
-            deployment.targetUser = "root"; # Remote host's username
-            deployment.buildOnTarget = false;
-
-            # This parameter functions similarly to `modules` in `nixosConfigurations.xxx`,
-            # used for importing all submodules.
-            imports = [
-              ./hosts/perseus
-              ./modules/core.nix
-              ./modules/desktop.nix
-              ./modules/nix.nix
-              chaotic.nixosModules.default
-            ];
-          };
       };
     };
 }

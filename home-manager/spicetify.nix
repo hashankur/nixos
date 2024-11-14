@@ -1,9 +1,4 @@
-{
-  inputs,
-  lib,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
 in
@@ -14,7 +9,7 @@ in
   # configure spicetify :)
   programs.spicetify = {
     enable = true;
-    theme = lib.mkForce spicePkgs.themes.spotifyNoPremium;
+    theme = spicePkgs.themes.spotifyNoPremium;
     # colorScheme = "mono";
 
     enabledCustomApps = with spicePkgs.apps; [ lyricsPlus ];
