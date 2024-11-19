@@ -15,7 +15,7 @@
     };
 
     ags = {
-      url = "github:Aylur/ags/v2";
+      url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -103,6 +103,7 @@
             ./hosts/perseus
             ./modules/core.nix
             ./modules/desktop.nix
+            chaotic.nixosModules.default
 
             home-manager.nixosModules.home-manager
             {
@@ -120,10 +121,11 @@
           inherit system;
           specialArgs = inputs;
           modules = [
+            ./modules/nix.nix
             ./hosts/calypso
             ./modules/core.nix
             # ./modules/desktop.nix
-            ./modules/nix.nix
+            chaotic.nixosModules.default
           ];
         };
       };

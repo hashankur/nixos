@@ -1,12 +1,19 @@
 { pkgs, ... }:
 {
-
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  # Auto login Gnome
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "account";
+  };
+
+  # Workaround for crash on login
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
   networking = {
     hostName = "calypso"; # Define your hostname.

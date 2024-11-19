@@ -1,12 +1,9 @@
 { pkgs, zen-browser, ... }:
 {
-
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
-
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
 
   networking = {
     hostName = "odyssey"; # Define your hostname.

@@ -1,12 +1,9 @@
 { pkgs, ... }:
 {
-
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
-
-  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   networking = {
     hostName = "perseus"; # Define your hostname.
@@ -42,7 +39,7 @@
     python3Full
     vscode.fhs
     obsidian
-    arduino-ide
+    # arduino-ide
     obs-studio
 
     # gnomeExtensions.pano # Needs v23 for gnome 46
@@ -62,10 +59,10 @@
       openDefaultPorts = true;
     };
 
-    mysql = {
-      enable = true;
-      package = pkgs.mariadb;
-    };
+    # mysql = {
+    #   enable = true;
+    #   package = pkgs.mariadb;
+    # };
   };
 
   # Open ports in the firewall.

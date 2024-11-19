@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  # boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
 
   boot = {
     loader = {
@@ -75,5 +77,23 @@
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
+  };
+
+  services = {
+    # Power savings
+    power-profiles-daemon.enable = false;
+    auto-cpufreq.enable = true;
+  };
+
+  chaotic.scx = {
+    enable = true;
+    package = pkgs.scx.full;
+    scheduler = "scx_bpfland";
+  };
+
+  # ZRAM
+  zramSwap = {
+    enable = true;
+    memoryPercent = 100;
   };
 }

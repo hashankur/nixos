@@ -28,10 +28,4 @@
   programs = {
     fish.enable = true;
   };
-
-  # ZRAM
-  zramSwap = {
-    enable = true;
-    memoryPercent = 100;
-  };
 }
