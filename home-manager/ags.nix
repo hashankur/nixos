@@ -13,12 +13,12 @@
     extraPackages = with inputs.ags.packages.${pkgs.system}; [
       apps
       # auth
-      # battery
-      # bluetooth
+      battery
+      bluetooth
       mpris
-      # network
-      # notifd
-      # tray
+      network
+      notifd
+      tray
       wireplumber
       pkgs.fzf
       pkgs.dart-sass

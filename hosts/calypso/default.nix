@@ -5,15 +5,14 @@
     ./hardware-configuration.nix
   ];
 
-  # Auto login Gnome
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "account";
-  };
-
-  # Workaround for crash on login
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
+  # # Auto login Gnome
+  # services.displayManager.autoLogin = {
+  #   enable = true;
+  #   user = "elmo";
+  # };
+  # # Workaround for crash on login
+  # systemd.services."getty@tty1".enable = false;
+  # systemd.services."autovt@tty1".enable = false;
 
   networking = {
     hostName = "calypso"; # Define your hostname.
@@ -48,6 +47,13 @@
   services = {
     # Enable the OpenSSH daemon.
     openssh.enable = true;
+
+    auto-cpufreq.settings = {
+      charger = {
+        governor = "powersave";
+        turbo = "auto";
+      };
+    };
   };
 
   # Open ports in the firewall.

@@ -85,11 +85,11 @@
     auto-cpufreq.enable = true;
   };
 
-  chaotic.scx = {
-    enable = true;
-    package = pkgs.scx.full;
-    scheduler = "scx_bpfland";
-  };
+  # chaotic.scx = {
+  #   enable = true;
+  #   package = pkgs.scx.full;
+  #   scheduler = "scx_bpfland";
+  # };
 
   # ZRAM
   zramSwap = {

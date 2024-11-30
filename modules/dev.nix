@@ -53,12 +53,52 @@
 
     nix-ld = {
       enable = true;
-      libraries =
-        with pkgs;
-        [
-          xorg.libxkbfile
-        ]
-        ++ pkgs.steam-run.fhsenv.args.multiPkgs pkgs;
+      libraries = with pkgs; [
+        ## From nixpkgs `android-studio` package ##
+
+        # Crash at startup without these
+        fontconfig
+        freetype
+        xorg.libXext
+        xorg.libXi
+        xorg.libXrender
+        xorg.libXtst
+
+        alsa-lib
+        dbus
+        expat
+        libbsd
+        libpulseaudio
+        libuuid
+        xorg.libX11
+        xorg.libxcb
+        libxkbcommon
+        xorg.xcbutilwm
+        xorg.xcbutilrenderutil
+        xorg.xcbutilkeysyms
+        xorg.xcbutilimage
+        xorg.xcbutilcursor
+        xorg.libICE
+        xorg.libSM
+        xorg.libxkbfile
+        xorg.libXcomposite
+        xorg.libXcursor
+        xorg.libXdamage
+        xorg.libXfixes
+        libGL
+        libdrm
+        libpng
+        nspr
+        nss_latest
+        systemd
+
+        # For GTKLookAndFeel
+        gtk2
+        glib
+
+        # For wayland support
+        wayland
+      ];
     };
   };
 

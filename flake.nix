@@ -34,14 +34,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ala-lape = {
-      url = "git+https://git.madhouse-project.org/algernon/ala-lape.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # ala-lape = {
+    #   url = "git+https://git.madhouse-project.org/algernon/ala-lape.git";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     zen-browser = {
       # url = "github:MarceColl/zen-browser-flake";
-      url = "github:MarceColl/zen-browser-flake?ref=pull/45/head";
+      url = "github:MarceColl/zen-browser-flake?ref=pull/61/head";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -59,9 +59,7 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
       lib = nixpkgs.lib;
-      conf = self.nixosConfigurations;
     in
     {
       nixosConfigurations = {
