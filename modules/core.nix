@@ -83,13 +83,13 @@
     # Power savings
     power-profiles-daemon.enable = false;
     auto-cpufreq.enable = true;
-  };
 
-  # chaotic.scx = {
-  #   enable = true;
-  #   package = pkgs.scx.full;
-  #   scheduler = "scx_bpfland";
-  # };
+    scx = {
+      enable = true;
+      package = pkgs.scx.full;
+      scheduler = "scx_bpfland";
+    };
+  };
 
   # ZRAM
   zramSwap = {

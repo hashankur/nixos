@@ -42,7 +42,10 @@
       };
     };
   };
-  environment.systemPackages = with pkgs; [ brave ];
+  environment.systemPackages = with pkgs; [
+    brave
+    firefox
+  ];
 
   services = {
     # Enable the OpenSSH daemon.

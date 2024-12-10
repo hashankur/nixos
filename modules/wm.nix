@@ -38,6 +38,8 @@
     fd
     xwayland-satellite-unstable
     wl-mirror
+
+    soteria
   ];
 
   nixpkgs.overlays = [ niri.overlays.niri ];
@@ -49,7 +51,8 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+      # (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+      nerd-fonts.symbols-only
       # iosevka-bin
       # inter
       # noto-fonts-color-emoji
@@ -93,7 +96,7 @@
   programs = {
     niri = {
       enable = true;
-      package = pkgs.niri-unstable;
+      package = pkgs.niri-stable;
     };
 
     xwayland = {
@@ -102,16 +105,6 @@
   };
 
   systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
     user.services.niri-flake-polkit.enable = false;
   };
 }

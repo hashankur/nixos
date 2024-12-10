@@ -12,6 +12,7 @@
     bun
     # python3
     rustup
+    gleam
 
     ## Tools
     # contrast
