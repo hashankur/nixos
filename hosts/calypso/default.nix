@@ -57,10 +57,15 @@
         turbo = "auto";
       };
     };
+
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ ];
+  # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
 
   system.stateVersion = "23.05"; # Did you read the comment?
