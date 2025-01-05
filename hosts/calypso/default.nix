@@ -45,6 +45,8 @@
   environment.systemPackages = with pkgs; [
     brave
     firefox
+    btop
+    fastfetch
   ];
 
   services = {
@@ -62,6 +64,16 @@
       enable = true;
       openFirewall = true;
     };
+  };
+
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-vaapi-driver # For older processors. LIBVA_DRIVER_NAME=i965
+    ];
+  };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "i965";
   };
 
   # Open ports in the firewall.

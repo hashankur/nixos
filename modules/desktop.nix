@@ -9,6 +9,7 @@
     inkscape
     # foliate
     mpv
+    jellyfin-media-player
 
     ## Office
     libreoffice-fresh
