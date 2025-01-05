@@ -43,8 +43,8 @@
     obs-studio
     parabolic
 
-    # gnomeExtensions.pano # Needs v23 for gnome 46
-    gnomeExtensions.clipboard-indicator
+    gnomeExtensions.pano # Needs v23 for gnome 46
+    # gnomeExtensions.clipboard-indicator
     gnomeExtensions.tiling-shell
   ];
 

@@ -96,4 +96,11 @@
     enable = true;
     memoryPercent = 100;
   };
+
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts
+      # noto-fonts-color-emoji
+    ];
+  };
 }

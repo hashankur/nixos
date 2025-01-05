@@ -38,7 +38,7 @@
     obsidian
     fragments
     brave
-    zen-browser.packages."${system}".specific
+    zen-browser.packages."${system}".default
 
     ## Media
     # handbrake
@@ -85,7 +85,9 @@
   # virtualisation.waydroid.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 8081 ]; # For expo
+  networking.firewall.allowedTCPPorts = [
+    8081 # For Expo
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
 
   system.stateVersion = "23.05"; # Did you read the comment?
