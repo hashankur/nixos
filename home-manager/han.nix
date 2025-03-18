@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ ... }:
 {
   home.stateVersion = "24.05";
 
@@ -7,21 +7,7 @@
     ./ags.nix
     ./spicetify.nix
     ./stylix.nix # see wm.nix for global stylix
-
-    inputs.ala-lape.homeManagerModules.default
   ];
 
-  services.ala-lape = {
-    enable = false;
-    package = inputs.ala-lape;
-    config = {
-      limits = {
-        poll_frequency = "300s";
-        activity_timeout = "300s";
-      };
-      process = [ { name = "qemu-system-x86_64"; } ];
-    };
-  };
   # Use XDG config
   programs.niri.config = null;
-}

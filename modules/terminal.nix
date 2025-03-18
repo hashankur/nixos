@@ -14,6 +14,7 @@
     zoxide
     # warp-terminal
     # nushell
-    rio
+    # rio
+    ghostty
   ];
 }

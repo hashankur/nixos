@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    gamemode
+    # gamemode
     bottles
     mangohud
     # gamescope
@@ -12,6 +12,13 @@
     # umu.packages.${pkgs.system}.umu
     # wineWowPackages.stagingFull
   ];
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
 
   hardware.graphics = {
     ## radv: an open-source Vulkan driver from freedesktop
