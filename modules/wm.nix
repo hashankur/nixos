@@ -40,6 +40,8 @@
     wl-mirror
 
     soteria
+
+    matugen
   ];
 
   nixpkgs.overlays = [ niri.overlays.niri ];

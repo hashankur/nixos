@@ -4,7 +4,10 @@
     inputs.ags.homeManagerModules.default
   ];
 
-  home.packages = [ inputs.ags.packages.${pkgs.system}.io ];
+  home.packages = with inputs.ags.packages.${pkgs.system}; [
+    io
+    notifd
+  ];
 
   programs.ags = {
     enable = true;
@@ -20,8 +23,6 @@
       notifd
       tray
       wireplumber
-      pkgs.fzf
-      pkgs.dart-sass
     ];
   };
 }
