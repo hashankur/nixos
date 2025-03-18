@@ -22,4 +22,6 @@
       process = [ { name = "qemu-system-x86_64"; } ];
     };
   };
+  # Use XDG config
+  programs.niri.config = null;
 }

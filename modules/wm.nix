@@ -109,4 +109,36 @@
   systemd = {
     user.services.niri-flake-polkit.enable = false;
   };
+
+  # xdg.portal = {
+  #   enable = true;
+  #   config = {
+  #     common = {
+  #       default = "wlr";
+  #     };
+  #   };
+  #   wlr.enable = true;
+  #   wlr.settings.screencast = {
+  #     output_name = "eDP-1";
+  #     chooser_type = "simple";
+  #     chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+  #   };
+  # };
+
+  xdg.portal = {
+    enable = true;
+    config = {
+      niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.Access" = "gnome";
+        "org.freedesktop.impl.portal.FileChooser" = "gnome";
+        "org.freedesktop.impl.portal.Notification" = "gnome";
+        "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+      };
+    };
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 }
