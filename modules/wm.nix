@@ -55,7 +55,7 @@
     packages = with pkgs; [
       # (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
       nerd-fonts.symbols-only
-      # iosevka-bin
+      iosevka-bin
       # inter
       # noto-fonts-color-emoji
       # twitter-color-emoji
@@ -77,16 +77,16 @@
     };
     fonts = {
       serif = {
-        name = "Inter";
-        package = pkgs.inter;
+        name = "Adwaita Sans";
+        package = pkgs.adwaita-fonts;
       };
       sansSerif = {
-        name = "Inter";
-        package = pkgs.inter;
+        name = "Adwaita Sans";
+        package = pkgs.adwaita-fonts;
       };
       monospace = {
-        name = "Iosevka";
-        package = pkgs.iosevka-bin;
+        name = "Adwaita Mono";
+        package = pkgs.adwaita-fonts;
       };
       emoji = {
         name = "Twitter Color Emoji";
