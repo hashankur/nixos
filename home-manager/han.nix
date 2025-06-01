@@ -4,11 +4,14 @@
 
   # add the home manager module
   imports = [
-    ./ags.nix
-    ./spicetify.nix
-    ./stylix.nix # see wm.nix for global stylix
+    ./modules/ags.nix
+    ./modules/spicetify.nix
+    ./modules/stylix.nix # see wm.nix for global stylix
     ./modules/nushell.nix
   ];
 
-  # Use XDG config
-  programs.niri.config = null;
+  programs = {
+    # Use XDG config
+    niri.config = null;
+  };
+}
