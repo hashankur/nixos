@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    tdesktop
+    # tdesktop
 
     ## Media
     # tauon

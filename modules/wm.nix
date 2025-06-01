@@ -11,7 +11,7 @@
     libnotify
     # pamixer
     swww
-    waybar
+    # waybar
     brightnessctl
     dunst
 
@@ -24,16 +24,15 @@
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     cliphist
     fzf
-    bemenu # wayland clone of dmenu
     # clipse
 
     encfs
-    gocryptfs
+    # gocryptfs
     zenity
     sshfs
     jq
-    socat
-    bc
+    # socat
+    # bc
     ripgrep
     fd
     xwayland-satellite-unstable
