@@ -25,8 +25,4 @@
     # gnome-tweaks
     adw-gtk3
   ];
-
-  programs = {
-    fish.enable = true;
-  };
 }

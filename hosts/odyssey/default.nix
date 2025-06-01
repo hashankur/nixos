@@ -28,7 +28,7 @@
         "kvm"
         "dialout"
       ];
-      shell = pkgs.fish;
+      shell = pkgs.nushell;
     };
   };
 

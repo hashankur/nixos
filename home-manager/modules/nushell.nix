@@ -5,6 +5,8 @@
       enable = true;
       configFile.text = # nu
         ''
+          $env.config.buffer_editor = "hx"
+
           # Common ls aliases and sort them by type and then name
           # Inspired by https://github.com/nushell/nushell/issues/7190
           def lla [...args] { ls -la ...(if $args == [] {["."]} else {$args}) | sort-by type name -i }
@@ -29,14 +31,14 @@
           $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
 
           # fish completions https://www.nushell.sh/cookbook/external_completers.html#fish-completer
-          let fish_completer = {|spans|
-            ${lib.getExe pkgs.fish} --command $"complete '--do-complete=($spans | str join ' ')'"
-            | from tsv --flexible --noheaders --no-infer
-            | rename value description
-            | update value {
-                if ($in | path exists) {$'"($in | str replace "\"" "\\\"" )"'} else {$in}
-            }
-          }
+          # let fish_completer = {|spans|
+          #   ${lib.getExe pkgs.fish} --command $"complete '--do-complete=($spans | str join ' ')'"
+          #   | from tsv --flexible --noheaders --no-infer
+          #   | rename value description
+          #   | update value {
+          #       if ($in | path exists) {$'"($in | str replace "\"" "\\\"" )"'} else {$in}
+          #   }
+          # }
 
           # zoxide completions https://www.nushell.sh/cookbook/external_completers.html#zoxide-completer
           let zoxide_completer = {|spans|
@@ -89,12 +91,22 @@
             print (command-not-found $command_name | str trim)
           }
 
-          $env.PATH = ($env.PATH | 
-            split row (char esep) |
-            prepend /home/myuser/.apps |
-            append /usr/bin/env
-          )
+          # Environment variables
+          let ANDROID = ($env.HOME | path join "Android/Sdk")
+          let path_segments = [
+            ($ANDROID | path join "tools")
+            ($ANDROID | path join "tools/bin")
+            ($ANDROID | path join "platform-tools")
+            ($ANDROID | path join "emulator")
+            ($env.HOME | path join ".bun/bin")
+          ]
+          $env.PATH = ($path_segments | split row (char esep)) | append ($env.PATH | split row (char esep))
 
+          # $env.PATH = ($env.PATH | 
+          # split row (char esep) |
+          # prepend /home/myuser/.apps |
+          # append /usr/bin/env
+          # )
           source ~/.zoxide.nu
         '';
     };
