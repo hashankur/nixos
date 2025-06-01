@@ -33,11 +33,12 @@
   # Set your time zone.
   time = {
     timeZone = "Asia/Colombo";
-    # hardwareClockInLocalTime = false; # Fix: Messy system time jumps
+    hardwareClockInLocalTime = true; # For Windows time sync issues
   };
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.utf8";
+  # i18n.defaultLocale = "en_US.utf8";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable the X11 windowing system.
   # Enable the GNOME Desktop Environment.
