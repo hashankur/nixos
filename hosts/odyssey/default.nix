@@ -36,9 +36,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     obsidian
-    fragments
     brave
-    zen-browser.packages."${system}".default
+    zen-browser.packages."${system}".beta
 
     ## Media
     # handbrake
@@ -50,14 +49,16 @@
     # zathura
     # typst
     # staruml
-    # zotero
+    zotero
 
-    # distrobox
+    distrobox
     # megasync
     # colmena
     mission-center
 
     anydesk
+    # varia
+    qbittorrent
   ];
 
   # List services that you want to enable:
@@ -74,10 +75,19 @@
 
     tailscale.enable = true;
 
-    # Enable the OpenSSH daemon.
     openssh.enable = true;
 
     flatpak.enable = true;
+
+    cloudflare-warp.enable = true;
+
+    # fwupd.enable = true;
+
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
+      user = "han";
+    };
   };
 
   # virtualisation.virtualbox.host.enable = true;

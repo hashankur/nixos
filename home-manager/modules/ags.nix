@@ -10,7 +10,9 @@
       io
       notifd
     ]
-    ++ [ pkgs.imagemagick ];
+    ++ [
+      pkgs.imagemagick
+    ];
 
   programs.ags = {
     enable = true;

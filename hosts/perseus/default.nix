@@ -25,7 +25,6 @@
           "video"
           "dialout"
         ];
-        shell = pkgs.fish;
       };
       root = {
         openssh.authorizedKeys.keys = [
@@ -34,10 +33,10 @@
       };
     };
   };
+
   environment.systemPackages = with pkgs; [
     firefox
     python3Full
-    vscode.fhs
     obsidian
     # arduino-ide
     obs-studio
@@ -46,10 +45,17 @@
     handbrake
     bottles
 
+    vscode.fhs
+    nodejs
+
     gnomeExtensions.caffeine
     gnomeExtensions.pano
     gnomeExtensions.tiling-shell
   ];
+
+  programs = {
+    fish.enable = true;
+  };
 
   services = {
     # Enable the OpenSSH daemon.

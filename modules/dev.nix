@@ -3,34 +3,39 @@
   environment.systemPackages = with pkgs; [
     ## Editor / IDE
     vscode.fhs
-    zed-editor_git
-    # androidStudioPackages.beta
+    zed-editor-fhs_git
     # arduino-ide
 
     ## Compilers / Runtimes
     nodejs
     bun
-    # python3
+    gcc
     rustup
-    gleam
+    # gleam
+    # uv # Python package and project manager
 
     ## Tools
     # contrast
     # gaphor
-    # gcc
     # scrcpy
     nh
     # docker-compose
+    devenv
 
     ## LSP
     # nil
     nixfmt-rfc-style
     nixd
+    nil
     nodePackages_latest.vscode-langservers-extracted
     nodePackages_latest.typescript-language-server
+    nodePackages_latest.prettier
     nodePackages_latest."@tailwindcss/language-server"
     marksman
     # lua-language-server
+    biome
+    taplo
+    clang-tools
   ];
 
   programs = {
@@ -110,5 +115,8 @@
   #   };
   # };
 
-  # virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    rootless.enable = true;
+  };
 }

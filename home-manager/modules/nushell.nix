@@ -99,6 +99,7 @@
             ($ANDROID | path join "platform-tools")
             ($ANDROID | path join "emulator")
             ($env.HOME | path join ".bun/bin")
+            ($env.HOME | path join ".cargo/bin")
           ]
           $env.PATH = ($path_segments | split row (char esep)) | append ($env.PATH | split row (char esep))
 
