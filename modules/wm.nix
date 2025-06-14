@@ -41,6 +41,9 @@
     soteria
 
     matugen
+    morewaita-icon-theme
+
+    # sherlock-launcher
   ];
 
   nixpkgs.overlays = [ niri.overlays.niri ];
@@ -92,6 +95,11 @@
         package = pkgs.twitter-color-emoji;
       };
     };
+  };
+
+  qt = {
+    enable = true;
+    # platformTheme = lib.mkDefault "qt5ct";
   };
 
   programs = {

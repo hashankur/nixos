@@ -9,8 +9,8 @@ in
   # configure spicetify :)
   programs.spicetify = {
     enable = true;
-    # theme = spicePkgs.themes.spotifyNoPremium;
-    # colorScheme = "mono";
+    theme = spicePkgs.themes.sleek;
+    colorScheme = "UltraBlack";
 
     enabledCustomApps = with spicePkgs.apps; [ lyricsPlus ];
 
