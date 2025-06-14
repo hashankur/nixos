@@ -41,14 +41,18 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable the X11 windowing system.
-  # Enable the GNOME Desktop Environment.
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
     excludePackages = [ pkgs.xterm ];
   };
+
   environment.gnome.excludePackages = (with pkgs; [ gnome-tour ]);
+
+  # Enable the GNOME Desktop Environment.
+  services = {
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 
   # Configure keymap in X11
   services.xserver = {

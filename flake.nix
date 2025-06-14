@@ -14,8 +14,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    astal = {
+      # url = "github:Aylur/astal?ref=pull/70/head"; # Niri lib
+      url = "github:Aylur/astal/40ec154e61885424b2fc387573af0321b9f5f5bf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ags = {
       url = "github:Aylur/ags";
+      inputs.astal.follows = "astal";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
