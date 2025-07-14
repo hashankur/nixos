@@ -88,6 +88,15 @@
       openFirewall = true;
       user = "han";
     };
+
+    kanata = {
+      enable = true;
+      keyboards = {
+        "minimal" = {
+          config = builtins.readFile ../../modules/kanata/minimal.scm;
+        };
+      };
+    };
   };
 
   # virtualisation.virtualbox.host.enable = true;
