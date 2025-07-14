@@ -1,8 +1,9 @@
 { niri, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    # hyprlock
+    hyprlock
     swayidle
+    # wlinhibit
     # hyprpicker
     # wlsunset
     gammastep
@@ -95,6 +96,10 @@
         package = pkgs.twitter-color-emoji;
       };
     };
+    targets = {
+      plymouth.enable = false;
+    };
+
   };
 
   qt = {
