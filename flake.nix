@@ -15,8 +15,8 @@
     };
 
     astal = {
-      # url = "github:Aylur/astal?ref=pull/70/head"; # Niri lib
-      url = "github:Aylur/astal/40ec154e61885424b2fc387573af0321b9f5f5bf";
+      url = "github:Aylur/astal?ref=pull/70/head"; # Niri lib
+      # url = "github:Aylur/astal/40ec154e61885424b2fc387573af0321b9f5f5bf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -47,8 +47,6 @@
     # };
 
     zen-browser = {
-      # url = "github:MarceColl/zen-browser-flake";
-      # url = "github:MarceColl/zen-browser-flake?ref=pull/61/head";
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
