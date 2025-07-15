@@ -4,12 +4,13 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 14d";
+      options = "--delete-older-than 7d";
     };
+    optimise.automatic = true;
     registry.nixpkgs.flake = nixpkgs; # Reuse system nixpkgs for flakes
     settings = {
       # Slows down write operations considerably?
-      auto-optimise-store = true;
+      # auto-optimise-store = true;
       experimental-features = [
         "nix-command"
         "flakes"
