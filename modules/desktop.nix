@@ -9,7 +9,7 @@
     inkscape
     # foliate
     mpv
-    jellyfin-media-player
+    # jellyfin-media-player
 
     ## Office
     libreoffice-fresh
@@ -17,7 +17,7 @@
     tealdeer
     btop
     fastfetch
-    wget2
+    # wget2
     killall
     unrar
     libnotify

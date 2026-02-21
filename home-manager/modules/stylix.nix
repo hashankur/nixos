@@ -2,12 +2,11 @@
 {
   stylix = {
     enable = true;
-    iconTheme = {
+    icons = {
       enable = true;
       package = pkgs.morewaita-icon-theme;
     };
     targets = {
-      # chromium.enable = false;
       gtk.enable = false;
       spicetify.enable = false;
       qt = {

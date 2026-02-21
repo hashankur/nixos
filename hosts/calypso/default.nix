@@ -43,7 +43,6 @@
     };
   };
   environment.systemPackages = with pkgs; [
-    brave
     firefox
     btop
     fastfetch

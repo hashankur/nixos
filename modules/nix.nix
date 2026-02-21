@@ -17,9 +17,9 @@
       ];
 
       builders-use-substitutes = true;
-      substituters = [ ];
+      substituters = [ "https://attic.xuyh0120.win/lantian" ];
 
-      trusted-public-keys = [ ];
+      trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
 
       trusted-users = [
         "root"

@@ -1,18 +1,25 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
     ## Editor / IDE
-    vscode.fhs
-    zed-editor-fhs_git
+    # vscode.fhs
+    zed-editor-fhs
+    # zed-editor-fhs
     # arduino-ide
+    # jetbrains-toolbox
 
     ## Compilers / Runtimes
     nodejs
     bun
-    gcc
-    rustup
+    # deno
+    # gcc
+    # rustup
     # gleam
     # uv # Python package and project manager
+    android-tools
 
     ## Tools
     # contrast
@@ -21,21 +28,23 @@
     nh
     # docker-compose
     devenv
+    # devtoolbox
+    # alpaca
+    lazydocker
 
     ## LSP
-    # nil
-    nixfmt-rfc-style
     nixd
     nil
-    nodePackages_latest.vscode-langservers-extracted
-    nodePackages_latest.typescript-language-server
-    nodePackages_latest.prettier
-    nodePackages_latest."@tailwindcss/language-server"
-    marksman
+    # nodePackages_latest.vscode-langservers-extracted
+    # nodePackages_latest.typescript-language-server
+    # nodePackages_latest.prettier
+    # nodePackages_latest."@tailwindcss/language-server"
+    # marksman
     # lua-language-server
-    biome
+    # biome
     taplo
     clang-tools
+    # qt6.full
   ];
 
   programs = {
@@ -48,14 +57,12 @@
       };
     };
 
-    adb.enable = true;
-
     java = {
       enable = true;
       package = pkgs.temurin-bin;
     };
 
-    direnv.enable = false;
+    direnv.enable = true;
 
     nix-ld = {
       enable = true;
@@ -118,5 +125,9 @@
   virtualisation.docker = {
     enable = true;
     rootless.enable = true;
+  };
+
+  virtualisation.vmware.host = {
+    enable = true;
   };
 }

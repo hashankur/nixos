@@ -52,7 +52,7 @@
             ## alias fixer start https://www.nushell.sh/cookbook/external_completers.html#alias-completions
             let expanded_alias = scope aliases
             | where name == $spans.0
-            | get -i 0.expansion
+            | get -o 0.expansion
 
             let spans = if $expanded_alias != null {
               $spans
@@ -78,13 +78,25 @@
               algorithm: "fuzzy"    # prefix or fuzzy
               external: {
                 # set to false to prevent nushell looking into $env.PATH to find more suggestions
-                enable: true 
+                enable: true
                 # set to lower can improve completion performance at the cost of omitting some options
-                max_results: 100 
+                max_results: 100
                 completer: $multiple_completers
               }
+            },
+            hooks: {
+              pre_prompt: [{ ||
+                if (which direnv | is-empty) {
+                  return
+                }
+
+                direnv export json | from json | default {} | load-env
+                if 'ENV_CONVERSIONS' in $env and 'PATH' in $env.ENV_CONVERSIONS {
+                  $env.PATH = do $env.ENV_CONVERSIONS.PATH.from_string $env.PATH
+                }
+              }]
             }
-          } 
+          }
 
           $env.config.hooks.command_not_found = {
             |command_name|
@@ -100,10 +112,11 @@
             ($ANDROID | path join "emulator")
             ($env.HOME | path join ".bun/bin")
             ($env.HOME | path join ".cargo/bin")
+            ($env.HOME | path join ".local/bin")
           ]
           $env.PATH = ($path_segments | split row (char esep)) | append ($env.PATH | split row (char esep))
 
-          # $env.PATH = ($env.PATH | 
+          # $env.PATH = ($env.PATH |
           # split row (char esep) |
           # prepend /home/myuser/.apps |
           # append /usr/bin/env

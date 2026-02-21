@@ -36,15 +36,15 @@
 
   environment.systemPackages = with pkgs; [
     firefox
-    python3Full
     obsidian
     # arduino-ide
     obs-studio
     parabolic
-    blender
-    handbrake
+    # blender
+    # handbrake
     bottles
 
+    (python3.withPackages (ps: with ps; [ tkinter ]))
     vscode.fhs
     nodejs
 
@@ -57,11 +57,17 @@
     fish.enable = true;
   };
 
+  systemd.tpm2.enable = false;
+  boot.initrd.systemd.tpm2.enable = false;
+
   services = {
     # Enable the OpenSSH daemon.
     openssh.enable = true;
+
+    flatpak.enable = true;
+
     syncthing = {
-      enable = true;
+      enable = false;
       user = "merina";
       configDir = "/home/merina/.config/syncthing";
       overrideFolders = false;

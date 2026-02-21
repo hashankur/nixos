@@ -1,7 +1,10 @@
-{ pkgs, ... }:
+{ nix-cachyos-kernel, pkgs, ... }:
 {
-  # boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  nixpkgs.overlays = [
+    nix-cachyos-kernel.overlays.pinned
+  ];
+
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
 
   boot = {
     loader = {
@@ -21,14 +24,16 @@
 
     plymouth = {
       enable = true;
-      theme = "sliced";
-      themePackages = with pkgs; [
-        # By default we would install all themes
-        (adi1090x-plymouth-themes.override {
-          selected_themes = [ "sliced" ];
-        })
+      themePackages = [
+        pkgs.plymouth-blahaj-theme
       ];
+      theme = "blahaj";
     };
+
+    kernelParams = [
+      "quiet"
+      "splash"
+    ];
   };
 
   # Bluetooth battery
@@ -44,7 +49,6 @@
   # Set your time zone.
   time = {
     timeZone = "Asia/Colombo";
-    hardwareClockInLocalTime = true; # For Windows time sync issues
   };
 
   # Select internationalisation properties.
@@ -97,12 +101,12 @@
 
   services = {
     # Power savings
-    power-profiles-daemon.enable = false;
-    auto-cpufreq.enable = true;
+    # power-profiles-daemon.enable = false;
+    # auto-cpufreq.enable = true;
 
     scx = {
       enable = true;
-      package = pkgs.scx.full;
+      package = pkgs.scx.rustscheds;
       scheduler = "scx_bpfland";
     };
   };

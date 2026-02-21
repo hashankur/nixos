@@ -1,10 +1,14 @@
-{ niri, pkgs, ... }:
+{
+  lib,
+  niri,
+  pkgs,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
     hyprlock
     swayidle
     # wlinhibit
-    # hyprpicker
     # wlsunset
     gammastep
     # wluma
@@ -12,9 +16,8 @@
     libnotify
     # pamixer
     swww
-    # waybar
     brightnessctl
-    dunst
+    # dunst
 
     # Screenshot
     # grim
@@ -22,7 +25,7 @@
     # slurp
 
     # Clipboard
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    wl-clipboard-rs # wl-copy and wl-paste for copy/paste from stdin / stdout
     cliphist
     fzf
     # clipse
@@ -47,7 +50,9 @@
     # sherlock-launcher
   ];
 
-  nixpkgs.overlays = [ niri.overlays.niri ];
+  nixpkgs.overlays = [
+    niri.overlays.niri
+  ];
 
   environment.sessionVariables = {
     # Hint electron apps to use wayland
@@ -56,12 +61,9 @@
 
   fonts = {
     packages = with pkgs; [
-      # (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
       nerd-fonts.symbols-only
       iosevka-bin
-      # inter
-      # noto-fonts-color-emoji
-      # twitter-color-emoji
+      inter
     ];
   };
 
@@ -97,14 +99,15 @@
       };
     };
     targets = {
+      gnome.enable = false;
+      gtk.enable = false;
       plymouth.enable = false;
     };
-
   };
 
   qt = {
     enable = true;
-    # platformTheme = lib.mkDefault "qt5ct";
+    platformTheme = lib.mkDefault "qtct";
   };
 
   programs = {
@@ -121,21 +124,6 @@
   systemd = {
     user.services.niri-flake-polkit.enable = false;
   };
-
-  # xdg.portal = {
-  #   enable = true;
-  #   config = {
-  #     common = {
-  #       default = "wlr";
-  #     };
-  #   };
-  #   wlr.enable = true;
-  #   wlr.settings.screencast = {
-  #     output_name = "eDP-1";
-  #     chooser_type = "simple";
-  #     chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
-  #   };
-  # };
 
   xdg.portal = {
     enable = true;

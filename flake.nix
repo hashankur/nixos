@@ -7,16 +7,14 @@
     # Nixpkgs, NixOS's official repo
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     astal = {
+      # url = "path:./overlays/astal/patched-astal"; # local patched source (PR-70 + applied PR-417)
       url = "github:Aylur/astal?ref=pull/70/head"; # Niri lib
-      # url = "github:Aylur/astal/40ec154e61885424b2fc387573af0321b9f5f5bf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -36,18 +34,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # ala-lape = {
-    #   url = "git+https://git.madhouse-project.org/algernon/ala-lape.git";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    winapps = {
+      url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -58,7 +58,6 @@
       self,
       nixpkgs,
       home-manager,
-      chaotic,
       niri,
       stylix,
       ...
@@ -82,7 +81,6 @@
             ./modules/wm.nix
             ./modules/ssd.nix
             ./modules/terminal.nix
-            chaotic.nixosModules.default
             niri.nixosModules.niri
             stylix.nixosModules.stylix
 
@@ -107,17 +105,16 @@
             ./hosts/perseus
             ./modules/core.nix
             ./modules/desktop.nix
-            chaotic.nixosModules.default
 
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-              };
-              home-manager.users.merina = import ./home-manager/merina.nix;
-            }
+            # home-manager.nixosModules.home-manager
+            # {
+            #   home-manager.useGlobalPkgs = true;
+            #   home-manager.useUserPackages = true;
+            #   home-manager.extraSpecialArgs = {
+            #     inherit inputs;
+            #   };
+            #   home-manager.users.merina = import ./home-manager/merina.nix;
+            # }
           ];
         };
 
@@ -129,7 +126,6 @@
             ./hosts/calypso
             ./modules/core.nix
             # ./modules/desktop.nix
-            chaotic.nixosModules.default
           ];
         };
       };
