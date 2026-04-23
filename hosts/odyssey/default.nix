@@ -53,7 +53,7 @@
   environment.systemPackages = with pkgs; [
     # obsidian
     # brave
-    zen-browser.packages."${system}".beta
+    zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".beta
     # (vivaldi.override {
     #   proprietaryCodecs = true;
     #   enableWidevine = true;
@@ -61,7 +61,7 @@
 
     ## Media
     # handbrake
-    # obs-studio
+    obs-studio
     # pitivi
     # avidemux
 
@@ -86,8 +86,8 @@
     # upscayl
     thonny
 
-    winapps.packages."${system}".winapps
-    winapps.packages."${system}".winapps-launcher
+    winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps
+    winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps-launcher
   ];
 
   fileSystems."/mnt/Storage" = {
@@ -107,7 +107,7 @@
 
     tailscale.enable = true;
 
-    openssh.enable = true;
+    openssh.enable = false;
 
     flatpak.enable = true;
 
@@ -116,7 +116,7 @@
     # fwupd.enable = true;
 
     jellyfin = {
-      enable = true;
+      enable = false;
       openFirewall = true;
       user = "han";
     };
@@ -147,10 +147,22 @@
     # 7236
     # 7250
   ];
+  # networking.firewall.allowedTCPPortRanges = [
+  #   {
+  #     from = 5149;
+  #     to = 5169;
+  #   }
+  # ];
   networking.firewall.allowedUDPPorts = [
     # 7236
     # 5353
   ];
+  # networking.firewall.allowedUDPPortRanges = [
+  #   {
+  #     from = 5149;
+  #     to = 5169;
+  #   }
+  # ];
   # networking.firewall.trustedInterfaces = [ "p2p-wl+" ];
 
   system.stateVersion = "23.05"; # Did you read the comment?

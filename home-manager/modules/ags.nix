@@ -5,7 +5,7 @@
   ];
 
   home.packages =
-    with inputs.ags.packages.${pkgs.system};
+    with inputs.ags.packages.${pkgs.stdenv.hostPlatform.system};
     [
       io
       notifd
@@ -19,7 +19,7 @@
     # null or path, leave as null if you don't want hm to manage the config
     configDir = null;
     extraPackages =
-      with inputs.ags.packages.${pkgs.system};
+      with inputs.ags.packages.${pkgs.stdenv.hostPlatform.system};
       [
         apps
         # auth

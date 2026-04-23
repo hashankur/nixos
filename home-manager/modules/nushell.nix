@@ -98,10 +98,7 @@
             }
           }
 
-          $env.config.hooks.command_not_found = {
-            |command_name|
-            print (command-not-found $command_name | str trim)
-          }
+
 
           # Environment variables
           let ANDROID = ($env.HOME | path join "Android/Sdk")
@@ -126,6 +123,11 @@
     };
 
     carapace = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
+
+    nix-index = {
       enable = true;
       enableNushellIntegration = true;
     };

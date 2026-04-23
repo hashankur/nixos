@@ -59,7 +59,6 @@
 
     java = {
       enable = true;
-      package = pkgs.temurin-bin;
     };
 
     direnv.enable = true;
@@ -72,10 +71,10 @@
         # Crash at startup without these
         fontconfig
         freetype
-        xorg.libXext
-        xorg.libXi
-        xorg.libXrender
-        xorg.libXtst
+        libxext
+        libxi
+        libxrender
+        libxtst
 
         alsa-lib
         dbus
@@ -83,21 +82,21 @@
         libbsd
         libpulseaudio
         libuuid
-        xorg.libX11
-        xorg.libxcb
+        libx11
+        libxcb
         libxkbcommon
-        xorg.xcbutilwm
-        xorg.xcbutilrenderutil
-        xorg.xcbutilkeysyms
-        xorg.xcbutilimage
-        xorg.xcbutilcursor
-        xorg.libICE
-        xorg.libSM
-        xorg.libxkbfile
-        xorg.libXcomposite
-        xorg.libXcursor
-        xorg.libXdamage
-        xorg.libXfixes
+        libxcb-wm
+        libxcb-render-util
+        libxcb-keysyms
+        libxcb-image
+        libxcb-cursor
+        libice
+        libsm
+        libxkbfile
+        libxcomposite
+        libxcursor
+        libxdamage
+        libxfixes
         libGL
         libdrm
         libpng

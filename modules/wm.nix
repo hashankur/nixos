@@ -15,7 +15,7 @@
     playerctl
     libnotify
     # pamixer
-    swww
+    awww
     brightnessctl
     # dunst
 
@@ -25,7 +25,7 @@
     # slurp
 
     # Clipboard
-    wl-clipboard-rs # wl-copy and wl-paste for copy/paste from stdin / stdout
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     cliphist
     fzf
     # clipse
@@ -102,6 +102,7 @@
       gnome.enable = false;
       gtk.enable = false;
       plymouth.enable = false;
+      gtksourceview.enable = false; # Causes recompilation
     };
   };
 
