@@ -11,10 +11,20 @@
     lazygit
     # navi
     # yazi
-    zoxide
     # warp-terminal
-    # nushell
     # rio
     ghostty
   ];
+
+  programs = {
+    fish = {
+      enable = true;
+    };
+
+    zoxide = {
+      enable = true;
+    };
+
+    nix-index.enable = true;
+  };
 }

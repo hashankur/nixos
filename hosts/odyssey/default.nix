@@ -1,8 +1,8 @@
 {
   lib,
   pkgs,
+  helium,
   zen-browser,
-  winapps,
   ...
 }:
 {
@@ -44,7 +44,7 @@
         "kvm"
         "dialout"
       ];
-      shell = pkgs.nushell;
+      shell = pkgs.fish;
     };
   };
 
@@ -54,14 +54,11 @@
     # obsidian
     # brave
     zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".beta
-    # (vivaldi.override {
-    #   proprietaryCodecs = true;
-    #   enableWidevine = true;
-    # })
+    helium.packages."${pkgs.stdenv.hostPlatform.system}".default
 
     ## Media
     # handbrake
-    obs-studio
+    # obs-studio
     # pitivi
     # avidemux
 
@@ -70,9 +67,9 @@
     # zathura
     typst
     # staruml
-    zotero
+    # zotero
 
-    distrobox
+    # distrobox
     # megasync
     # colmena
     mission-center
@@ -84,11 +81,14 @@
     # jellyfin-mpv-shim
     # delfin
     # upscayl
-    thonny
 
-    winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps
-    winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps-launcher
+    # super-productivity
+
+    # winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps
+    # winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps-launcher
   ];
+
+  programs.localsend.enable = true;
 
   fileSystems."/mnt/Storage" = {
     device = "/dev/nvme0n1p5";

@@ -12,15 +12,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    astal = {
-      # url = "path:./overlays/astal/patched-astal"; # local patched source (PR-70 + applied PR-417)
-      url = "github:Aylur/astal?ref=pull/70/head"; # Niri lib
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    ags = {
-      url = "github:Aylur/ags";
-      inputs.astal.follows = "astal";
+    helium = {
+      url = "github:AlvaroParker/helium-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -29,12 +22,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri = {
-      url = "github:sodiboo/niri-flake";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
+    qml-language-server = {
+      url = "github:cushycush/qml-language-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    qml-niri = {
+      url = "github:imiric/qml-niri/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     stylix = {
       url = "github:danth/stylix";
@@ -46,10 +44,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    winapps = {
-      url = "github:winapps-org/winapps";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # winapps = {
+    #   url = "github:winapps-org/winapps";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   # Output config, or config for NixOS system
@@ -58,7 +56,6 @@
       self,
       nixpkgs,
       home-manager,
-      niri,
       stylix,
       ...
     }@inputs:
@@ -81,7 +78,6 @@
             ./modules/wm.nix
             ./modules/ssd.nix
             ./modules/terminal.nix
-            niri.nixosModules.niri
             stylix.nixosModules.stylix
 
             home-manager.nixosModules.home-manager

@@ -10,6 +10,7 @@
     # zed-editor-fhs
     # arduino-ide
     # jetbrains-toolbox
+    jetbrains.idea
 
     ## Compilers / Runtimes
     nodejs
@@ -19,18 +20,23 @@
     # rustup
     # gleam
     # uv # Python package and project manager
-    android-tools
+    # android-tools
 
     ## Tools
     # contrast
     # gaphor
     # scrcpy
     nh
-    # docker-compose
+    docker-compose
     devenv
     # devtoolbox
     # alpaca
     lazydocker
+    # nixpkgs only packages opencode 1.x; use local v2 (beta) until
+    # https://github.com/NixOS/nixpkgs/pull/569770 lands
+    (pkgs.callPackage ../packages/opencode2/default.nix { })
+    gnumake
+    claude-code
 
     ## LSP
     nixd
@@ -126,7 +132,7 @@
     rootless.enable = true;
   };
 
-  virtualisation.vmware.host = {
-    enable = true;
-  };
+  # virtualisation.vmware.host = {
+  #   enable = true;
+  # };
 }

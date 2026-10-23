@@ -5,11 +5,12 @@
   ...
 }:
 {
-  nixpkgs.overlays = [
-    nix-cachyos-kernel.overlays.pinned
-  ];
+  # nixpkgs.overlays = [
+  #   nix-cachyos-kernel.overlays.pinned
+  # ];
 
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+  # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
 
   boot = {
     loader = {
@@ -70,9 +71,19 @@
 
   # Enable the GNOME Desktop Environment.
   services = {
-    displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
   };
+
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.tuigreet}/bin/tuigreet --asterisks --remember --remember-user-session --time";
+  #       user = "greeter";
+  #     };
+  #   };
+  # };
 
   # Configure keymap in X11
   services.xserver = {
@@ -109,17 +120,25 @@
     # power-profiles-daemon.enable = false;
     # auto-cpufreq.enable = true;
 
-    scx = {
-      enable = true;
-      package = pkgs.scx.rustscheds;
-      scheduler = "scx_bpfland";
-    };
+    # scx = {
+    #   enable = true;
+    #   package = pkgs.scx.rustscheds;
+    #   scheduler = "scx_bpfland";
+    # };
   };
 
   # ZRAM
   zramSwap = {
     enable = true;
     memoryPercent = 100;
+    algorithm = "zstd";
+    priority = 100;
+  };
+
+  # Swapping to zram is cheap; prefer it over dropping page cache
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 150;
+    "vm.page-cluster" = 0;
   };
 
   fonts = {

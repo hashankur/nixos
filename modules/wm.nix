@@ -1,7 +1,8 @@
 {
   lib,
-  niri,
   pkgs,
+  qml-language-server,
+  qml-niri,
   ...
 }:
 {
@@ -30,8 +31,8 @@
     fzf
     # clipse
 
-    encfs
-    # gocryptfs
+    # encfs
+    gocryptfs
     zenity
     sshfs
     jq
@@ -39,7 +40,7 @@
     # bc
     ripgrep
     fd
-    xwayland-satellite-unstable
+    xwayland-satellite
     wl-mirror
 
     soteria
@@ -48,10 +49,11 @@
     morewaita-icon-theme
 
     # sherlock-launcher
-  ];
 
-  nixpkgs.overlays = [
-    niri.overlays.niri
+    quickshell
+    qt6Packages.qtdeclarative
+    qml-niri.packages."${pkgs.stdenv.hostPlatform.system}".default
+    qml-language-server.packages."${pkgs.stdenv.hostPlatform.system}".default
   ];
 
   environment.sessionVariables = {
@@ -82,16 +84,14 @@
     };
     fonts = {
       serif = {
-        name = "Adwaita Sans";
-        package = pkgs.adwaita-fonts;
+        name = "Outfit";
       };
       sansSerif = {
-        name = "Adwaita Sans";
-        package = pkgs.adwaita-fonts;
+        name = "Outfit";
       };
       monospace = {
-        name = "Adwaita Mono";
-        package = pkgs.adwaita-fonts;
+        name = "Iosevka";
+        package = pkgs.iosevka-bin;
       };
       emoji = {
         name = "Twitter Color Emoji";
@@ -114,7 +114,7 @@
   programs = {
     niri = {
       enable = true;
-      package = pkgs.niri-stable;
+      useNautilus = true;
     };
 
     xwayland = {
@@ -122,24 +122,20 @@
     };
   };
 
-  systemd = {
-    user.services.niri-flake-polkit.enable = false;
-  };
-
-  xdg.portal = {
-    enable = true;
-    config = {
-      niri = {
-        default = [
-          "gnome"
-          "gtk"
-        ];
-        "org.freedesktop.impl.portal.Access" = "gnome";
-        "org.freedesktop.impl.portal.FileChooser" = "gnome";
-        "org.freedesktop.impl.portal.Notification" = "gnome";
-        "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
-      };
-    };
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   config = {
+  #     niri = {
+  #       default = [
+  #         "gnome"
+  #         "gtk"
+  #       ];
+  #       "org.freedesktop.impl.portal.Access" = "gnome";
+  #       "org.freedesktop.impl.portal.FileChooser" = "gnome";
+  #       "org.freedesktop.impl.portal.Notification" = "gnome";
+  #       "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+  #     };
+  #   };
+  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  # };
 }

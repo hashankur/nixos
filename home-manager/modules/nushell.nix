@@ -113,6 +113,9 @@
           ]
           $env.PATH = ($path_segments | split row (char esep)) | append ($env.PATH | split row (char esep))
 
+          mkdir ($nu.default-config-dir | path join autoload)
+          devenv hook nu | save --force ($nu.default-config-dir | path join autoload/devenv-hook.nu)
+
           # $env.PATH = ($env.PATH |
           # split row (char esep) |
           # prepend /home/myuser/.apps |

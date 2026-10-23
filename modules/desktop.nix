@@ -12,7 +12,7 @@
     # jellyfin-media-player
 
     ## Office
-    libreoffice-fresh
+    libreoffice-stable
 
     tealdeer
     btop

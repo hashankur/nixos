@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     # gamemode
-    (bottles.override { removeWarningPopup = true; })
+    # (bottles.override { removeWarningPopup = true; })
     # mangohud
     # gamescope
     # gnome.aisleriot

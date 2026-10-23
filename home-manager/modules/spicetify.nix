@@ -20,7 +20,7 @@ in
       powerBar
       songStats
       autoVolume
-      betterGenres # genre
+      # betterGenres # genre
       adblock
       # beautifulLyrics
     ];
