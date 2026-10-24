@@ -9,10 +9,13 @@
 }:
 inputs.nixpkgs.lib.nixosSystem {
   inherit system;
-  specialArgs = inputs;
+  specialArgs = inputs // { inherit inputs; };
   modules =
-    modules
-    ++ [ ../hosts/${name} ]
+    [
+      ../modules
+      ../hosts/${name}
+    ]
+    ++ modules
     ++ inputs.nixpkgs.lib.optionals (homeUsers != { }) [
       inputs.home-manager.nixosModules.home-manager
       {

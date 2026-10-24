@@ -5,6 +5,8 @@
     ./hardware-configuration.nix
   ];
 
+  my.desktop.apps.enable = true;
+
   networking = {
     hostName = "perseus"; # Define your hostname.
     # Enables wireless support via wpa_supplicant.

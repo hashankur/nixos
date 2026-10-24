@@ -1,138 +1,107 @@
 {
+  config,
+  lib,
   pkgs,
   ...
 }:
 {
-  environment.systemPackages = with pkgs; [
-    ## Editor / IDE
-    # vscode.fhs
-    zed-editor-fhs
-    # zed-editor-fhs
-    # arduino-ide
-    # jetbrains-toolbox
-    jetbrains.idea
+  options.my.dev.enable = lib.mkEnableOption "development tools, runtimes and docker";
 
-    ## Compilers / Runtimes
-    nodejs
-    bun
-    # deno
-    # gcc
-    # rustup
-    # gleam
-    # uv # Python package and project manager
-    # android-tools
-
-    ## Tools
-    # contrast
-    # gaphor
-    # scrcpy
-    nh
-    docker-compose
-    devenv
-    # devtoolbox
-    # alpaca
-    lazydocker
+  config = lib.mkIf config.my.dev.enable {
     # nixpkgs only packages opencode 1.x; use local v2 (beta) until
     # https://github.com/NixOS/nixpkgs/pull/569770 lands
-    (pkgs.callPackage ../packages/opencode2/default.nix { })
-    gnumake
-    claude-code
+    nixpkgs.overlays = [
+      (final: _: { opencode2 = final.callPackage ../packages/opencode2/default.nix { }; })
+    ];
 
-    ## LSP
-    nixd
-    nil
-    # nodePackages_latest.vscode-langservers-extracted
-    # nodePackages_latest.typescript-language-server
-    # nodePackages_latest.prettier
-    # nodePackages_latest."@tailwindcss/language-server"
-    # marksman
-    # lua-language-server
-    # biome
-    taplo
-    clang-tools
-    # qt6.full
-  ];
+    environment.systemPackages = with pkgs; [
+      ## Editor / IDE
+      zed-editor-fhs
+      jetbrains.idea
 
-  programs = {
-    git = {
-      enable = true;
-      config = {
-        init = {
-          defaultBranch = "main";
-        };
+      ## Compilers / Runtimes
+      nodejs
+      bun
+
+      ## Tools
+      nh
+      docker-compose
+      devenv
+      lazydocker
+      opencode2
+      gnumake
+      claude-code
+
+      ## LSP
+      nixd
+      nil
+      taplo
+      clang-tools
+    ];
+
+    programs = {
+      git = {
+        enable = true;
+        config.init.defaultBranch = "main";
+      };
+
+      java.enable = true;
+      direnv.enable = true;
+
+      nix-ld = {
+        enable = true;
+        libraries = with pkgs; [
+          ## From nixpkgs `android-studio` package ##
+
+          # Crash at startup without these
+          fontconfig
+          freetype
+          libxext
+          libxi
+          libxrender
+          libxtst
+
+          alsa-lib
+          dbus
+          expat
+          libbsd
+          libpulseaudio
+          libuuid
+          libx11
+          libxcb
+          libxkbcommon
+          libxcb-wm
+          libxcb-render-util
+          libxcb-keysyms
+          libxcb-image
+          libxcb-cursor
+          libice
+          libsm
+          libxkbfile
+          libxcomposite
+          libxcursor
+          libxdamage
+          libxfixes
+          libGL
+          libdrm
+          libpng
+          nspr
+          nss_latest
+          systemd
+
+          # For GTKLookAndFeel
+          gtk2
+          glib
+
+          # For wayland support
+          wayland
+        ];
       };
     };
 
-    java = {
+    virtualisation.docker = {
       enable = true;
-    };
-
-    direnv.enable = true;
-
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [
-        ## From nixpkgs `android-studio` package ##
-
-        # Crash at startup without these
-        fontconfig
-        freetype
-        libxext
-        libxi
-        libxrender
-        libxtst
-
-        alsa-lib
-        dbus
-        expat
-        libbsd
-        libpulseaudio
-        libuuid
-        libx11
-        libxcb
-        libxkbcommon
-        libxcb-wm
-        libxcb-render-util
-        libxcb-keysyms
-        libxcb-image
-        libxcb-cursor
-        libice
-        libsm
-        libxkbfile
-        libxcomposite
-        libxcursor
-        libxdamage
-        libxfixes
-        libGL
-        libdrm
-        libpng
-        nspr
-        nss_latest
-        systemd
-
-        # For GTKLookAndFeel
-        gtk2
-        glib
-
-        # For wayland support
-        wayland
-      ];
+      rootless.enable = true;
     };
   };
-
-  # services = {
-  #   mysql = {
-  #     enable = false;
-  #     package = pkgs.mariadb;
-  #   };
-  # };
-
-  virtualisation.docker = {
-    enable = true;
-    rootless.enable = true;
-  };
-
-  # virtualisation.vmware.host = {
-  #   enable = true;
-  # };
 }

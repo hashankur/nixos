@@ -60,36 +60,10 @@
       nixosConfigurations = {
         odyssey = mkHost {
           name = "odyssey";
-          modules = [
-            ./modules/nix.nix
-            ./modules/core.nix
-            ./modules/desktop.nix
-            ./modules/dev.nix
-            ./modules/gaming.nix
-            ./modules/wm.nix
-            ./modules/ssd.nix
-            ./modules/terminal.nix
-            inputs.stylix.nixosModules.stylix
-          ];
           homeUsers.han = import ./home-manager/han.nix;
         };
-
-        perseus = mkHost {
-          name = "perseus";
-          modules = [
-            ./modules/nix.nix
-            ./modules/core.nix
-            ./modules/desktop.nix
-          ];
-        };
-
-        calypso = mkHost {
-          name = "calypso";
-          modules = [
-            ./modules/nix.nix
-            ./modules/core.nix
-          ];
-        };
+        perseus = mkHost { name = "perseus"; };
+        calypso = mkHost { name = "calypso"; };
       };
     };
 }

@@ -23,6 +23,19 @@
 
   # system.nixos-init.enable = true;
 
+  my = {
+    dev.enable = true;
+    gaming.enable = true;
+    ssd.enable = true;
+    terminal.enable = true;
+    desktop = {
+      apps.enable = true;
+      niri.enable = true;
+      quickshell.enable = true;
+      stylix.enable = true;
+    };
+  };
+
   networking = {
     hostName = "odyssey"; # Define your hostname.
     # Enable networking

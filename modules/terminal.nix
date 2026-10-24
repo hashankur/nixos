@@ -1,30 +1,26 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    starship
-    eza
-    # ranger
-    # kitty
-    helix
-    yadm
-    # zellij
-    lazygit
-    # navi
-    # yazi
-    # warp-terminal
-    # rio
-    ghostty
-  ];
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  options.my.terminal.enable = lib.mkEnableOption "terminal tooling (fish, zoxide, ghostty, ...)";
 
-  programs = {
-    fish = {
-      enable = true;
+  config = lib.mkIf config.my.terminal.enable {
+    environment.systemPackages = with pkgs; [
+      starship
+      eza
+      helix
+      yadm
+      lazygit
+      ghostty
+    ];
+
+    programs = {
+      fish.enable = true;
+      zoxide.enable = true;
+      nix-index.enable = true;
     };
-
-    zoxide = {
-      enable = true;
-    };
-
-    nix-index.enable = true;
   };
 }
