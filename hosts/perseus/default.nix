@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -8,7 +8,7 @@
   networking = {
     hostName = "perseus"; # Define your hostname.
     # Enables wireless support via wpa_supplicant.
-    wireless.enable = false;
+    wireless.enable = lib.mkForce false;
     # Enable networking
     networkmanager.enable = true;
   };
@@ -49,7 +49,7 @@
     nodejs
 
     gnomeExtensions.caffeine
-    gnomeExtensions.pano
+    # gnomeExtensions.pano # removed from nixpkgs
     gnomeExtensions.tiling-shell
   ];
 

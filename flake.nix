@@ -52,25 +52,16 @@
 
   # Output config, or config for NixOS system
   outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      stylix,
-      ...
-    }@inputs:
+    { self, ... }@inputs:
     let
-      system = "x86_64-linux";
-      lib = nixpkgs.lib;
+      mkHost = import ./lib/mkHost.nix { inherit inputs; };
     in
     {
       nixosConfigurations = {
-        odyssey = lib.nixosSystem {
-          inherit system;
-          specialArgs = inputs;
+        odyssey = mkHost {
+          name = "odyssey";
           modules = [
             ./modules/nix.nix
-            ./hosts/odyssey
             ./modules/core.nix
             ./modules/desktop.nix
             ./modules/dev.nix
@@ -78,50 +69,25 @@
             ./modules/wm.nix
             ./modules/ssd.nix
             ./modules/terminal.nix
-            stylix.nixosModules.stylix
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-              };
-              home-manager.users.han = import ./home-manager/han.nix;
-            }
+            inputs.stylix.nixosModules.stylix
           ];
+          homeUsers.han = import ./home-manager/han.nix;
         };
 
-        perseus = lib.nixosSystem {
-          inherit system;
-          specialArgs = inputs;
+        perseus = mkHost {
+          name = "perseus";
           modules = [
             ./modules/nix.nix
-            ./hosts/perseus
             ./modules/core.nix
             ./modules/desktop.nix
-
-            # home-manager.nixosModules.home-manager
-            # {
-            #   home-manager.useGlobalPkgs = true;
-            #   home-manager.useUserPackages = true;
-            #   home-manager.extraSpecialArgs = {
-            #     inherit inputs;
-            #   };
-            #   home-manager.users.merina = import ./home-manager/merina.nix;
-            # }
           ];
         };
 
-        calypso = lib.nixosSystem {
-          inherit system;
-          specialArgs = inputs;
+        calypso = mkHost {
+          name = "calypso";
           modules = [
             ./modules/nix.nix
-            ./hosts/calypso
             ./modules/core.nix
-            # ./modules/desktop.nix
           ];
         };
       };
