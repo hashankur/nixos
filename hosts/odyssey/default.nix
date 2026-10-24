@@ -64,41 +64,16 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # obsidian
-    # brave
     zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".beta
     helium.packages."${pkgs.stdenv.hostPlatform.system}".default
 
-    ## Media
-    # handbrake
-    # obs-studio
-    # pitivi
-    # avidemux
-
     ## Office
-    # xournalpp
-    # zathura
     typst
-    # staruml
-    # zotero
 
-    # distrobox
-    # megasync
-    # colmena
     mission-center
 
-    # anydesk
-    # varia
     qbittorrent
-    # gnome-network-displays
-    # jellyfin-mpv-shim
-    # delfin
-    # upscayl
 
-    # super-productivity
-
-    # winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps
-    # winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps-launcher
   ];
 
   programs.localsend.enable = true;
@@ -146,37 +121,17 @@
     };
   };
 
-  # virtualisation.virtualbox.host.enable = true;
-
-  # virtualisation.waydroid.enable = true;
-
-  # Open ports in the firewall.
+  # Development ports
   networking.firewall.allowedTCPPorts = [
-    # Development ports
     3000
     3001
     8081
 
-    # 7236
-    # 7250
   ];
-  # networking.firewall.allowedTCPPortRanges = [
-  #   {
-  #     from = 5149;
-  #     to = 5169;
-  #   }
-  # ];
   networking.firewall.allowedUDPPorts = [
     # 7236
     # 5353
   ];
-  # networking.firewall.allowedUDPPortRanges = [
-  #   {
-  #     from = 5149;
-  #     to = 5169;
-  #   }
-  # ];
-  # networking.firewall.trustedInterfaces = [ "p2p-wl+" ];
 
   system.stateVersion = "23.05"; # Did you read the comment?
 }

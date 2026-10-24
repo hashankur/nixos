@@ -4,9 +4,7 @@
 
   # add the home manager module
   imports = [
-    # ./modules/ags.nix
     ./modules/spicetify.nix
-    ./modules/stylix.nix # see wm.nix for global stylix
-    # ./modules/nushell.nix
+    ./modules/stylix.nix # system-wide stylix lives in modules/desktop/stylix.nix
   ];
 }

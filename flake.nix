@@ -60,7 +60,7 @@
       nixosConfigurations = {
         odyssey = mkHost {
           name = "odyssey";
-          homeUsers.han = import ./home-manager/han.nix;
+          homeUsers.han = import ./home/han.nix;
         };
         perseus = mkHost { name = "perseus"; };
         calypso = mkHost { name = "calypso"; };
