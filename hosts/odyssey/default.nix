@@ -33,6 +33,7 @@
       niri.enable = true;
       quickshell.enable = true;
       stylix.enable = true;
+      umbriel.enable = true;
     };
   };
 
@@ -74,6 +75,8 @@
 
     qbittorrent
 
+    thunderbird
+    slack
   ];
 
   programs.localsend.enable = true;
@@ -125,7 +128,9 @@
   networking.firewall.allowedTCPPorts = [
     3000
     3001
+    8000
     8081
+    8082
 
   ];
   networking.firewall.allowedUDPPorts = [

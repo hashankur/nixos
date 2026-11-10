@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    amane = {
+      url = "github:MystiaFin/amane";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     helium = {
       url = "github:AlvaroParker/helium-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,11 +28,6 @@
     };
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-
-    qml-language-server = {
-      url = "github:cushycush/qml-language-server";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     qml-niri = {
       url = "github:imiric/qml-niri/main";

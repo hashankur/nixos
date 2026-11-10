@@ -17,11 +17,9 @@
     environment.systemPackages = with pkgs; [
       ## Editor / IDE
       zed-editor-fhs
-      jetbrains.idea
 
       ## Compilers / Runtimes
       nodejs
-      bun
 
       ## Tools
       nh
@@ -31,6 +29,9 @@
       opencode2
       gnumake
       claude-code
+      tmux
+      tmuxp
+      harlequin
 
       ## LSP
       nixd
@@ -38,6 +39,25 @@
       taplo
       clang-tools
     ];
+
+    services.postgresql = {
+      enable = true;
+      package = pkgs.postgresql_16;
+      settings.port = 5435;
+      ensureUsers = [
+        {
+          name = "han";
+          ensureClauses = {
+            superuser = true;
+            createdb = true;
+          };
+        }
+      ];
+      authentication = ''
+        host all all 127.0.0.1/32 trust
+        host all all ::1/128      trust
+      '';
+    };
 
     programs = {
       git = {

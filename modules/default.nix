@@ -12,6 +12,7 @@
     ./desktop/niri.nix
     ./desktop/quickshell.nix
     ./desktop/stylix.nix
+    ./desktop/umbriel.nix
     inputs.stylix.nixosModules.stylix
   ];
 }

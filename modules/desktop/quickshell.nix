@@ -1,4 +1,10 @@
-{ config, lib, pkgs, qml-language-server, qml-niri, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  qml-niri,
+  ...
+}:
 {
   options.my.desktop.quickshell.enable = lib.mkEnableOption "quickshell shell and QML tooling";
 
@@ -7,7 +13,6 @@
       quickshell
       qt6Packages.qtdeclarative
       qml-niri.packages."${pkgs.stdenv.hostPlatform.system}".default
-      qml-language-server.packages."${pkgs.stdenv.hostPlatform.system}".default
     ];
 
     qt = {
