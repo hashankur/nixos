@@ -2,11 +2,8 @@
 {
   fonts = {
     enableDefaultPackages = true;
+    packages = [ pkgs.noto-fonts ];
     # Emoji fix
     fontconfig.useEmbeddedBitmaps = true;
-    packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk-sans
-    ];
   };
 }

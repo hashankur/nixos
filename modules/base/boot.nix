@@ -17,11 +17,8 @@
       "ntfs"
     ];
 
-    plymouth = {
-      enable = true;
-      themePackages = [ pkgs.plymouth-blahaj-theme ];
-      theme = "blahaj";
-    };
+    # Default theme; odyssey sets its own.
+    plymouth.enable = true;
 
     kernelParams = [
       "quiet"

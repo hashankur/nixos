@@ -12,7 +12,7 @@
   ];
 
   boot.plymouth = {
-    theme = lib.mkForce "sliced";
+    theme = "sliced";
     themePackages = with pkgs; [
       # By default we would install all themes
       (adi1090x-plymouth-themes.override {

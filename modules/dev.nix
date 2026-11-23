@@ -4,6 +4,29 @@
   pkgs,
   ...
 }:
+let
+  # Zed with its language servers on PATH (Zed only, not system-wide)
+  zed = pkgs.symlinkJoin {
+    name = "zed-editor-with-lsps";
+    paths = [ pkgs.zed-editor ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/zeditor --prefix PATH : ${
+        lib.makeBinPath (
+          with pkgs;
+          [
+            nixd
+            nil
+            taplo
+            clang-tools
+            marksman
+          ]
+        )
+      }
+    '';
+    inherit (pkgs.zed-editor) meta;
+  };
+in
 {
   options.my.dev.enable = lib.mkEnableOption "development tools, runtimes and docker";
 
@@ -16,7 +39,8 @@
 
     environment.systemPackages = with pkgs; [
       ## Editor / IDE
-      zed-editor-fhs
+      # plain (non-FHS) zed; downloaded extension binaries run via nix-ld
+      zed
 
       ## Compilers / Runtimes
       nodejs
@@ -32,12 +56,6 @@
       tmux
       tmuxp
       harlequin
-
-      ## LSP
-      nixd
-      nil
-      taplo
-      clang-tools
     ];
 
     services.postgresql = {
@@ -110,11 +128,18 @@
           systemd
 
           # For GTKLookAndFeel
-          gtk2
+          gtk3
           glib
 
           # For wayland support
           wayland
+
+          ## For binaries Zed extensions download ##
+
+          # .NET-based LSPs (e.g. marksman) abort without ICU
+          icu
+          # FHS zed shipped this for the Codex CLI agent
+          libcap
         ];
       };
     };

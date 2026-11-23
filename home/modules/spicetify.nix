@@ -19,7 +19,6 @@ in
       # keyboardShortcut
       powerBar
       songStats
-      autoVolume
       # betterGenres # genre
       adblock
       # beautifulLyrics
